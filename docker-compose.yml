@@ -1,0 +1,14 @@
+version: '3.3'
+
+services:
+
+  client:
+    build: .
+    image: gatsby
+    container_name: portfolio-client
+    working_dir: /app
+    volumes:
+      - ./:/app
+    user: 1000:1000
+    command: sh -c "yarn && yarn start"
+    network_mode: host
