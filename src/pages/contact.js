@@ -8,7 +8,7 @@ const ContactPage = (props) => {
 
   return (
     <Layout title='Contact' activePage='/contact/' >
-      <form method='post' action='/contact/' data-netlify='true' data-netlify-honeypot='bot-field'>
+      <form method='post' action='/contact/' netlify>
         <div className='field half first'>
           <label htmlFor='name'>Name</label>
           <input type='text' name='name' id='name' />
