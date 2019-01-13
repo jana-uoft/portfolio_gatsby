@@ -3,14 +3,17 @@ import PropTypes from 'prop-types'
 import Img from 'gatsby-image'
 import { StaticQuery, graphql } from 'gatsby'
 
-function renderImage (images, src) {
+function renderImage (images, src, width) {
   let file = images.edges.find(image => image.node.relativePath === src)
-  if (file) return <Img fluid={file.node.childImageSharp.fluid} />
-  file = images.edges.find(image => image.node.relativePath === 'unknown.jpg')
-  return <Img fluid={file.node.childImageSharp.fluid} />
+  if (file) {
+    return <div style={{ width: width, margin: '0 auto' }}><Img fluid={file.node.childImageSharp.fluid} /></div>
+  } else {
+    file = images.edges.find(image => image.node.relativePath === 'unknown.jpg')
+    return <div style={{ width: width, margin: '0 auto' }}><Img fluid={file.node.childImageSharp.fluid} /></div>
+  }
 }
 
-const MyImg = ({ src }) => {
+const MyImg = ({ src, width }) => {
   return <StaticQuery
     query={graphql`
       query {
@@ -29,16 +32,18 @@ const MyImg = ({ src }) => {
         }
       }
     `}
-    render={({ images }) => renderImage(images, src)}
+    render={({ images }) => renderImage(images, src, width)}
   />
 }
 
 MyImg.defaultProps = {
-  src: `unknown.jpg`
+  src: `unknown.jpg`,
+  width: '100%'
 }
 
 MyImg.propTypes = {
-  src: PropTypes.string.isRequired
+  src: PropTypes.string.isRequired,
+  width: PropTypes.string
 }
 
 export default MyImg

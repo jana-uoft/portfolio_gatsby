@@ -31,7 +31,7 @@ class Layout extends React.Component {
   }
 
   render () {
-    const { title, activePage, children } = this.props
+    const { title, activePage, children, marginLeft, padding } = this.props
     const { sidebarOpen } = this.state
 
     return (
@@ -42,13 +42,13 @@ class Layout extends React.Component {
         <SEO title={title} keywords={[`jana`, `jana rajakumar`, `freelancer`, `jana19.org`]} />
         <Hidden only={['xs', 'sm']} implementation='js'>
           <Sidebar activePage={activePage} variant='permanent' />
-          <div style={{ marginLeft: 250, padding: 10 }}>
+          <div style={{ marginLeft, padding, minWidth: 400 }}>
             {children}
           </div>
         </Hidden>
         <Hidden only={['md', 'lg', 'xl']} implementation='js'>
           <Sidebar activePage={activePage} variant='temporary' open={sidebarOpen} toggleSidebar={sidebarOpen => this.setState({ sidebarOpen })} />
-          <div style={{ padding: 10 }}>
+          <div style={{ padding, minWidth: 400 }}>
             {children}
           </div>
         </Hidden>
@@ -60,12 +60,16 @@ class Layout extends React.Component {
 Layout.defaultProps = {
   title: 'Home',
   activePage: '/',
+  marginLeft: 250,
+  padding: 10,
   children: <></>
 }
 
 Layout.propTypes = {
   title: PropTypes.string.isRequired,
   activePage: PropTypes.string.isRequired,
+  marginLeft: PropTypes.number,
+  padding: PropTypes.number,
   children: PropTypes.node
 }
 

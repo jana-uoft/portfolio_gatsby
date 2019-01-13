@@ -11,7 +11,9 @@ import {
   Icon
 } from '@material-ui/core'
 import { teal } from '@material-ui/core/colors'
-
+import {
+  Image
+} from './'
 const items = [
   { label: 'Home', page: '/', icon: 'home' },
   { label: 'Resume', page: '/resume/', icon: 'local_library' },
@@ -49,7 +51,8 @@ const renderItem = ({ label, page, icon, activePage }) => (
 const StyledSwipeableDrawer = withStyles({
   paper: {
     width: 250,
-    border: 'none'
+    border: 'none',
+    textAlign: 'center'
   }
 })(SwipeableDrawer)
 
@@ -60,7 +63,8 @@ const Sidebar = ({ activePage, variant, open, toggleSidebar }) => (
     onOpen={() => toggleSidebar(true)}
     onClose={() => toggleSidebar(false)}
   >
-    <List>
+    <Image src='logo.png' width={'150px'} />
+    <List style={{ paddingTop: 0 }}>
       {items.map((item) => renderItem({ ...item, activePage }))}
     </List>
   </StyledSwipeableDrawer>
