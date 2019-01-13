@@ -4,12 +4,12 @@ import {
 } from '../components'
 import Typography from '@material-ui/core/Typography'
 
-const IndexPage = (props) => {
+const ContactPage = (props) => {
   return (
-    <Layout title='Home' activePage={props.pageResources.page.path} >
+    <Layout title='Contact' activePage={props.pageResources.page.path} >
       <Typography>Hello</Typography>
     </Layout>
   )
 }
 
-export default IndexPage
+export default ContactPage
