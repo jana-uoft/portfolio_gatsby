@@ -4,8 +4,8 @@ import {
 } from '../components'
 import Typography from '@material-ui/core/Typography'
 
-const NotFoundPage = (props) => (
-  <Layout title='404' activePage={props.pageResources.page.path} >
+const NotFoundPage = () => (
+  <Layout title='404' activePage='/404/' >
     <Typography>Hello</Typography>
   </Layout>
 )

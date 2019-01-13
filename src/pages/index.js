@@ -1,7 +1,5 @@
 import React from 'react'
-import {
-  Layout
-} from '../components'
+import { Layout } from '../components'
 import '../styles/animation.css'
 
 const Animation = (
@@ -118,9 +116,9 @@ const Animation = (
   </div>
 )
 
-const IndexPage = (props) => {
+const IndexPage = () => {
   return (
-    <Layout title='Home' activePage={props.pageResources.page.path} marginLeft={0} padding={0}>
+    <Layout title='Home' activePage='/' marginLeft={0} padding={0}>
       {Animation}
       <div className='header'>
         <h3>Jana Rajakumar</h3>

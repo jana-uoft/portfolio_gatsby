@@ -4,9 +4,9 @@ import {
 } from '../components'
 import Typography from '@material-ui/core/Typography'
 
-const ResumePage = (props) => {
+const ResumePage = () => {
   return (
-    <Layout title='Resume' activePage={props.pageResources.page.path} >
+    <Layout title='Resume' activePage='/resume/' >
       <Typography>Hello</Typography>
     </Layout>
   )

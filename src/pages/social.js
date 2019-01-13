@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography'
 
 const SocialPage = (props) => {
   return (
-    <Layout title='Social' activePage={props.pageResources.page.path} >
+    <Layout title='Social' activePage='/social/' >
       <Typography>Hello</Typography>
     </Layout>
   )
