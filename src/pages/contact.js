@@ -46,6 +46,7 @@ class ContactPage extends React.Component {
           data-netlify-honeypot='bot-field'
           onSubmit={this.handleSubmit}
         >
+          <input type='hidden' name='form-name' value='contact' />
           <div className='field half first'>
             <label htmlFor='name'>Name</label>
             <input type='text' name='name' id='name' onChange={this.handleChange} />
