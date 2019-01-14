@@ -2,15 +2,24 @@ import React from 'react'
 import {
   Layout
 } from '../components'
-import { navigateTo } from 'gatsby-link'
+import { navigate } from 'gatsby-link'
 
-function encode(data) {
+function encode (data) {
   return Object.keys(data)
     .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
-    .join('&');
+    .join('&')
 }
 
 class ContactPage extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {}
+  }
+
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+
   handleSubmit = e => {
     e.preventDefault()
     const form = e.target
@@ -22,7 +31,7 @@ class ContactPage extends React.Component {
         ...this.state
       })
     })
-      .then(() => navigateTo(form.getAttribute('action')))
+      .then(() => navigate(form.getAttribute('action')))
       .catch(error => alert(error))
   }
 
@@ -39,15 +48,15 @@ class ContactPage extends React.Component {
         >
           <div className='field half first'>
             <label htmlFor='name'>Name</label>
-            <input type='text' name='name' id='name' />
+            <input type='text' name='name' id='name' onChange={this.handleChange} />
           </div>
           <div className='field half'>
             <label htmlFor='email'>Email</label>
-            <input type='text' name='email' id='email' />
+            <input type='text' name='email' id='email' onChange={this.handleChange} />
           </div>
           <div className='field'>
             <label htmlFor='message'>Message</label>
-            <textarea name='message' id='message' rows='6' />
+            <textarea name='message' id='message' rows='6' onChange={this.handleChange} />
           </div>
           <ul className='actions'>
             <li><input type='submit' value='Send Message' className='special' /></li>
