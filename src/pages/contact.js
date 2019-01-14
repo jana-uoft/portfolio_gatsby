@@ -2,6 +2,13 @@ import React from 'react'
 import {
   Layout
 } from '../components'
+import { navigateTo } from 'gatsby-link'
+
+function encode(data) {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+    .join('&');
+}
 
 class ContactPage extends React.Component {
   handleSubmit = e => {
@@ -15,8 +22,8 @@ class ContactPage extends React.Component {
         ...this.state
       })
     })
-      .then(() => navigateTo (form.getAttribute('action')))
-      .catch(error => alert (error))
+      .then(() => navigateTo(form.getAttribute('action')))
+      .catch(error => alert(error))
   }
 
   render () {
