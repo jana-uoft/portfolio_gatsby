@@ -1,60 +1,59 @@
 import React from 'react'
+import { Layout } from '../components'
 import {
-  Layout
-} from '../components'
-import { navigate } from 'gatsby-link'
+  TextField,
+  Button,
+  Icon,
+  Dialog,
+  DialogActions,
+  DialogTitle,
+  withMobileDialog
+} from '@material-ui/core'
 
-function encode (data) {
-  return Object.keys(data)
-    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
-    .join('&')
-}
+const encode = (data) => Object.keys(data).map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key])).join('&')
 
 class ContactPage extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {}
+    this.state = {
+      name: '',
+      email: '',
+      message: '',
+      loading: false,
+      responseMessage: ''
+    }
   }
 
-  handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value })
-  }
+  handleTextChange = (field, value) => this.setState({ [field]: value })
+
+  clearForm = () => this.setState({ name: '', email: '', message: '', loading: false, responseMessage: '' })
 
   handleSubmit = e => {
     e.preventDefault()
-    const form = e.target
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: encode({
-        'form-name': form.getAttribute('name'),
-        ...this.state
+    this.setState({ loading: true }, () => {
+      const { name, email, message } = this.state
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encode({
+          'form-name': 'contact',
+          name,
+          email,
+          message
+        })
       })
+        .then(() => this.setState({ loading: false, responseMessage: 'Form successfully submitted. Thank you.' }))
+        .catch((error) => {
+          this.setState({ loading: false, responseMessage: `Something went wrong while submitting the form. Please try again.` })
+          console.log(error.message)
+        })
     })
-      .then(() => navigate(form.getAttribute('action')))
-      .catch(error => alert(error))
   }
 
   render () {
+    const { fullScreen } = this.props
+
     return (
-//       <form name='contact' method='post' data-netlify='true' data-netlify-honeypot='bot-field'>
-//     <div className='field half first'>
-//         <label htmlFor='name'>Name</label>
-//         <input type='text' name='name' id='name' />
-//     </div>
-//     <div className='field half'>
-//         <label htmlFor='email'>Email</label>
-//         <input type='text' name='email' id='email' />
-//     </div>
-//     <div className='field'>
-//         <label htmlFor='message'>Message</label>
-//         <textarea name='message' id='message' rows='6'></textarea>
-//     </div>
-//     <ul className='actions'>
-//         <li><input type='submit' value='Send Message' className='special' /></li>
-//         <li><input type='reset' value='Clear' /></li>
-//     </ul>
-// </form>
       <Layout title='Contact' activePage='/contact/' >
         <form
           name='contact'
@@ -63,28 +62,76 @@ class ContactPage extends React.Component {
           data-netlify='true'
           data-netlify-honeypot='bot-field'
           onSubmit={this.handleSubmit}
+          style={{
+            display: 'grid',
+            padding: '20px 20px',
+            gridGap: 40,
+            maxWidth: 500,
+            justifyItems: 'center',
+            margin: '0 auto'
+          }}
         >
           <input type='hidden' name='form-name' value='contact' />
-          <div className='field half first'>
-            <label htmlFor='name'>Name</label>
-            <input type='text' name='name' id='name' onChange={this.handleChange} />
-          </div>
-          <div className='field half'>
-            <label htmlFor='email'>Email</label>
-            <input type='text' name='email' id='email' onChange={this.handleChange} />
-          </div>
-          <div className='field'>
-            <label htmlFor='message'>Message</label>
-            <textarea name='message' id='message' rows='6' onChange={this.handleChange} />
-          </div>
-          <ul className='actions'>
-            <li><input type='submit' value='Send Message' className='special' /></li>
-            <li><input type='reset' value='Clear' /></li>
-          </ul>
+          <TextField
+            label='Name'
+            type='text'
+            required
+            value={this.state.name}
+            onChange={(e) => this.handleTextChange('name', e.target.value)}
+            fullWidth
+            disabled={this.state.loading}
+            autoFocus
+          />
+          <TextField
+            label='Email'
+            type='email'
+            required
+            value={this.state.email}
+            onChange={(e) => this.handleTextChange('email', e.target.value)}
+            fullWidth
+            disabled={this.state.loading}
+          />
+          <TextField
+            label='Message'
+            type='textbox'
+            value={this.state.message}
+            onChange={(e) => this.handleTextChange('message', e.target.value)}
+            fullWidth
+            disabled={this.state.loading}
+            multiline
+            rows={10}
+            rowsMax='10'
+          />
+          <Button
+            variant='contained'
+            type='submit'
+            color='primary'
+            disabled={this.props.loading}
+            style={{ maxWidth: 200 }}
+          >
+            Send Message
+            <Icon style={{ marginLeft: 5 }}>save</Icon>
+          </Button>
+          <Button variant='contained' color='secondary' type='reset' onClick={this.clearForm} style={{ maxWidth: 200 }}>
+            Cancel
+            <Icon style={{ marginLeft: 5 }}>cancel</Icon>
+          </Button>
         </form>
+        <Dialog
+          fullScreen={fullScreen}
+          open={this.state.responseMessage !== ''}
+          onClose={this.clearForm}
+          disableBackdropClick
+          aria-labelledby='Contact Form Response'
+        >
+          <DialogTitle id='Contact Form Response'>{this.state.responseMessage}</DialogTitle>
+          <DialogActions>
+            <Button onClick={this.clearForm} variant='contained' autoFocus color='primary'>OK</Button>
+          </DialogActions>
+        </Dialog>
       </Layout>
     )
   }
 }
 
-export default ContactPage
+export default withMobileDialog()(ContactPage)

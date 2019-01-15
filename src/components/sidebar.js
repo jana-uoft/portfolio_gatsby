@@ -10,7 +10,7 @@ import {
   ListItemText,
   Icon
 } from '@material-ui/core'
-import { teal } from '@material-ui/core/colors'
+import { purple } from '@material-ui/core/colors'
 import {
   Image
 } from './'
@@ -26,10 +26,10 @@ const StyledListItem = withStyles({
   root: {
     minHeight: 60,
     '&:hover': {
-      backgroundColor: `${teal[500]}`
+      backgroundColor: `${purple[800]}`
     },
     '&$selected': {
-      backgroundColor: `${teal[500]} !important`
+      backgroundColor: `${purple[800]} !important`
     }
   },
   selected: { }

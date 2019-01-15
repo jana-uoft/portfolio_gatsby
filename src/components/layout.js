@@ -5,7 +5,7 @@ import {
   CssBaseline,
   Hidden
 } from '@material-ui/core'
-import teal from '@material-ui/core/colors/teal'
+import { purple, red } from '@material-ui/core/colors'
 import {
   SEO,
   Sidebar
@@ -14,8 +14,8 @@ import {
 const theme = createMuiTheme({
   palette: {
     type: 'dark',
-    primary: teal,
-    secondary: teal
+    primary: purple,
+    secondary: red
   },
   typography: {
     useNextVariants: true
