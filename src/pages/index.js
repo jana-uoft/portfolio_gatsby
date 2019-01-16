@@ -1,128 +1,18 @@
 import React from 'react'
 import { Layout } from '../components'
-import '../styles/animation.css'
+import homeGif from '../images/home.gif'
+import rocketGif from '../images/rocket.gif'
 
-const Animation = (
-  <div className='square-animation'>
-    <div className='view'>
-      <div className='part'>
-        <div className='plane'>
-          <div className='cube'>
-            <div className='face x' />
-            <div className='face y' />
-            <div className='face z' />
-          </div>
-          <div className='cube'>
-            <div className='face x' />
-            <div className='face y' />
-            <div className='face z' />
-          </div>
-          <div className='cube'>
-            <div className='face x' />
-            <div className='face y' />
-            <div className='face z' />
-          </div>
-          <div className='cube'>
-            <div className='face x' />
-            <div className='face y' />
-            <div className='face z' />
-          </div>
-          <div className='cube'>
-            <div className='face x' />
-            <div className='face y' />
-            <div className='face z' />
-          </div>
-          <div className='cube'>
-            <div className='face x' />
-            <div className='face y' />
-            <div className='face z' />
-          </div>
-          <div className='cube'>
-            <div className='face x' />
-            <div className='face y' />
-            <div className='face z' />
-          </div>
-          <div className='cube'>
-            <div className='face x' />
-            <div className='face y' />
-            <div className='face z' />
-          </div>
-          <div className='static'>
-            <div className='cube'>
-              <div className='face x' />
-              <div className='face y' />
-              <div className='face z' />
-            </div>
-            <div className='cube'>
-              <div className='face x' />
-              <div className='face y' />
-              <div className='face z' />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className='part'>
-        <div className='plane'>
-          <div className='cube'>
-            <div className='face x' />
-            <div className='face y' />
-            <div className='face z' />
-          </div>
-          <div className='cube'>
-            <div className='face x' />
-            <div className='face y' />
-            <div className='face z' />
-          </div>
-          <div className='cube'>
-            <div className='face x' />
-            <div className='face y' />
-            <div className='face z' />
-          </div>
-          <div className='cube'>
-            <div className='face x' />
-            <div className='face y' />
-            <div className='face z' />
-          </div>
-          <div className='cube'>
-            <div className='face x' />
-            <div className='face y' />
-            <div className='face z' />
-          </div>
-          <div className='cube'>
-            <div className='face x' />
-            <div className='face y' />
-            <div className='face z' />
-          </div>
-          <div className='cube'>
-            <div className='face x' />
-            <div className='face y' />
-            <div className='face z' />
-          </div>
-          <div className='cube'>
-            <div className='face x' />
-            <div className='face y' />
-            <div className='face z' />
-          </div>
-          <div className='static'>
-            <div className='cube'>
-              <div className='face x' />
-              <div className='face y' />
-              <div className='face z' />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-)
+import Typography from '@material-ui/core/Typography'
 
 const IndexPage = () => {
   return (
-    <Layout title='Home' activePage='/' marginLeft={0} padding={0}>
-      {Animation}
-      <div className='header'>
-        <h3>Jana Rajakumar</h3>
-        <h6>Full Stack Developer</h6>
+    <Layout title='Home' activePage='/'>
+      <div style={{ display: 'grid', gridGap: 20, justifyItems: 'center' }}>
+        <img src={homeGif} width={300} />
+        <Typography variant='h3'>Jana Rajakumar</Typography>
+        <Typography variant='h5'>Full Stack Developer</Typography>
+        <img src={rocketGif} width={300} />
       </div>
     </Layout>
   )

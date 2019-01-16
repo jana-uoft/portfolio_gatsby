@@ -52,7 +52,8 @@ const StyledSwipeableDrawer = withStyles({
   paper: {
     width: 250,
     border: 'none',
-    textAlign: 'center'
+    textAlign: 'center',
+    opacity: 0.7
   }
 })(SwipeableDrawer)
 
