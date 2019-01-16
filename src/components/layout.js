@@ -11,6 +11,8 @@ import {
   Sidebar
 } from './'
 
+import bg from '../images/bg.jpg'
+
 const theme = createMuiTheme({
   palette: {
     type: 'dark',
@@ -40,18 +42,20 @@ class Layout extends React.Component {
         <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:300,400,500' />
         <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons' />
         <SEO title={title} keywords={[`jana`, `jana rajakumar`, `freelancer`, `jana19.org`]} />
-        <Hidden only={['xs', 'sm']} implementation='js'>
-          <Sidebar activePage={activePage} variant='permanent' />
-          <div style={{ marginLeft, padding, minWidth: 400 }}>
-            {children}
-          </div>
-        </Hidden>
-        <Hidden only={['md', 'lg', 'xl']} implementation='js'>
-          <Sidebar activePage={activePage} variant='temporary' open={sidebarOpen} toggleSidebar={sidebarOpen => this.setState({ sidebarOpen })} />
-          <div style={{ padding, minWidth: 400 }}>
-            {children}
-          </div>
-        </Hidden>
+        <div style={{ backgroundPosition: 'center', backgroundSize: 'contain', background: `url("${bg}")`, minHeight: '100vh', minWidth: 400 }}>
+          <Hidden only={['xs', 'sm']} implementation='js'>
+            <Sidebar activePage={activePage} variant='permanent' />
+            <div style={{ marginLeft, padding }}>
+              {children}
+            </div>
+          </Hidden>
+          <Hidden only={['md', 'lg', 'xl']} implementation='js'>
+            <Sidebar activePage={activePage} variant='temporary' open={sidebarOpen} toggleSidebar={sidebarOpen => this.setState({ sidebarOpen })} />
+            <div style={{ padding }}>
+              {children}
+            </div>
+          </Hidden>
+        </div>
       </MuiThemeProvider>
     )
   }

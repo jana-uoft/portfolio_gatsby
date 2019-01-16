@@ -118,11 +118,11 @@ class ContactPage extends React.Component {
           </Button>
         </form>
         <Dialog
-          fullScreen={fullScreen}
           open={this.state.responseMessage !== ''}
           onClose={this.clearForm}
           disableBackdropClick
           aria-labelledby='Contact Form Response'
+          style={fullScreen ? {} : { marginLeft: 240 }}
         >
           <DialogTitle id='Contact Form Response'>{this.state.responseMessage}</DialogTitle>
           <DialogActions>
