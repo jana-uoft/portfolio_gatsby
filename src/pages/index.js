@@ -8,11 +8,11 @@ import Typography from '@material-ui/core/Typography'
 const IndexPage = () => {
   return (
     <Layout title='Home' activePage='/'>
-      <div style={{ display: 'grid', gridGap: 20, justifyItems: 'center' }}>
-        <img src={homeGif} width={300} />
+      <div style={{ display: 'grid', gridGap: 20, justifyItems: 'center', paddingTop: 20 }}>
+        <img alt='developer' src={homeGif} width={250} />
         <Typography variant='h3'>Jana Rajakumar</Typography>
         <Typography variant='h5'>Full Stack Developer</Typography>
-        <img src={rocketGif} width={300} />
+        <img alt='rocket' src={rocketGif} width={200} />
       </div>
     </Layout>
   )

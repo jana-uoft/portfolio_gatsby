@@ -10,6 +10,13 @@ import {
   SEO,
   Sidebar
 } from './'
+import {
+  AppBar,
+  Button,
+  Toolbar,
+  Icon,
+  Typography
+} from '@material-ui/core/'
 
 import bg from '../images/bg.jpg'
 
@@ -42,16 +49,27 @@ class Layout extends React.Component {
         <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:300,400,500' />
         <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons' />
         <SEO title={title} keywords={[`jana`, `jana rajakumar`, `freelancer`, `jana19.org`]} />
-        <div style={{ backgroundPosition: 'center', backgroundSize: 'contain', background: `url("${bg}")`, minHeight: '100vh', minWidth: 400 }}>
+        <div style={{ backgroundPosition: 'center', backgroundSize: 'contain', background: `url('${bg}')`, minHeight: '100vh', minWidth: 400 }}>
           <Hidden only={['xs', 'sm']} implementation='js'>
             <Sidebar activePage={activePage} variant='permanent' />
-            <div style={{ marginLeft, padding }}>
+            <AppBar position='static' style={{ paddingLeft: marginLeft, opacity: 0.7, zIndex: -1 }}>
+              <Toolbar style={{ justifyContent: 'center' }}>
+                <Typography variant='h6'>{title}</Typography>
+              </Toolbar>
+            </AppBar>
+            <div style={{ marginLeft, padding, minHeight: '100vh' }}>
               {children}
             </div>
           </Hidden>
           <Hidden only={['md', 'lg', 'xl']} implementation='js'>
             <Sidebar activePage={activePage} variant='temporary' open={sidebarOpen} toggleSidebar={sidebarOpen => this.setState({ sidebarOpen })} />
-            <div style={{ padding }}>
+            <AppBar position='static' style={{ opacity: 0.7, zIndex: -1 }}>
+              <Toolbar>
+                <Button onClick={() => this.setState({ sidebarOpen: true })}><Icon>menu</Icon></Button>
+                <Typography variant='h6' style={{ position: 'absolute', left: 0, right: 0, textAlign: 'center', zIndex: -1 }}>{title}</Typography>
+              </Toolbar>
+            </AppBar>
+            <div style={{ padding, minHeight: '100vh' }}>
               {children}
             </div>
           </Hidden>
