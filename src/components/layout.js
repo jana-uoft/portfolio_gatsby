@@ -57,7 +57,7 @@ class Layout extends React.Component {
                 <Typography variant='h6'>{title}</Typography>
               </Toolbar>
             </AppBar>
-            <div style={{ marginLeft, padding, minHeight: '100vh' }}>
+            <div style={{ marginLeft, padding, minHeight: '90vh' }}>
               {children}
             </div>
           </Hidden>
@@ -69,7 +69,7 @@ class Layout extends React.Component {
                 <Typography variant='h6' style={{ position: 'absolute', left: 0, right: 0, textAlign: 'center', zIndex: -1 }}>{title}</Typography>
               </Toolbar>
             </AppBar>
-            <div style={{ padding, minHeight: '100vh' }}>
+            <div style={{ padding, minHeight: '90vh' }}>
               {children}
             </div>
           </Hidden>
