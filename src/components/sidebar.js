@@ -53,7 +53,8 @@ const StyledSwipeableDrawer = withStyles({
     width: 250,
     border: 'none',
     textAlign: 'center',
-    opacity: 0.9
+    opacity: 0.8,
+    marginTop: 64
   }
 })(SwipeableDrawer)
 

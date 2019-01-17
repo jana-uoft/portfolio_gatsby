@@ -64,7 +64,7 @@ class Layout extends React.Component {
           <Hidden only={['md', 'lg', 'xl']} implementation='js'>
             <Sidebar activePage={activePage} variant='temporary' open={sidebarOpen} toggleSidebar={sidebarOpen => this.setState({ sidebarOpen })} />
             <AppBar position='static' style={{ opacity: 0.7, zIndex: -1 }}>
-              <Toolbar>
+              <Toolbar style={{ minHeight: 64 }}>
                 <Button onClick={() => this.setState({ sidebarOpen: true })}><Icon>menu</Icon></Button>
                 <Typography variant='h6' style={{ position: 'absolute', left: 0, right: 0, textAlign: 'center', zIndex: -1 }}>{title}</Typography>
               </Toolbar>
