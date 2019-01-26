@@ -17,8 +17,11 @@ import {
   Icon,
   Typography
 } from '@material-ui/core/'
+import LogRocket from 'logrocket'
 
 import bg from '../images/bg.jpg'
+
+LogRocket.init('i6kgcs/test')
 
 const theme = createMuiTheme({
   palette: {
