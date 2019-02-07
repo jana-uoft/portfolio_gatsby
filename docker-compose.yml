@@ -1,14 +1,28 @@
 version: '3.3'
 
 services:
-
   client:
     build: .
-    image: gatsby
-    container_name: portfolio-client
+    image: portfolio
+    container_name: gatsby
     working_dir: /app
     volumes:
       - ./:/app
     user: 1000:1000
     command: sh -c "yarn && yarn start"
     network_mode: host
+    env_file:
+      - .env
+
+
+  server:
+    build: .
+    image: portfolio
+    container_name: sanity
+    working_dir: /app
+    volumes:
+      - ./sanity/:/app
+    command: sh -c "yarn && yarn start"
+    network_mode: host
+    env_file:
+      - .env

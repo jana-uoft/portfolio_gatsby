@@ -14,13 +14,6 @@ module.exports = {
       }
     },
     `gatsby-transformer-json`,
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `data`,
-        path: `${__dirname}/src/data`
-      }
-    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
@@ -34,7 +27,14 @@ module.exports = {
         display: `minimal-ui`,
         icon: `src/images/favicon.png`
       }
+    },
+    {
+      resolve: 'gatsby-source-sanity',
+      options: {
+        projectId: 'bp5s8545',
+        dataset: 'projects',
+        token: process.env.SANITY_TOKEN
+      }
     }
-    // 'gatsby-plugin-offline'
   ]
 }
