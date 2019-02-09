@@ -8,18 +8,11 @@ import {
 import { purple, red } from '@material-ui/core/colors'
 import {
   SEO,
-  Sidebar
+  Sidebar,
+  Topbar
 } from './'
-import {
-  AppBar,
-  Button,
-  Toolbar,
-  Icon,
-  Typography
-} from '@material-ui/core/'
-import LogRocket from 'logrocket'
-
 import bg from '../images/bg.jpg'
+import LogRocket from 'logrocket'
 
 LogRocket.init('i6kgcs/test')
 
@@ -42,6 +35,8 @@ class Layout extends React.Component {
     }
   }
 
+  toggleSideBar = () => this.setState({ sidebarOpen: true })
+
   render () {
     const { title, activePage, children, marginLeft, padding } = this.props
     const { sidebarOpen } = this.state
@@ -55,23 +50,14 @@ class Layout extends React.Component {
         <div style={{ backgroundPosition: 'center', backgroundSize: 'contain', background: `url('${bg}')`, minHeight: '100vh', minWidth: 400 }}>
           <Hidden only={['xs', 'sm']} implementation='js'>
             <Sidebar activePage={activePage} variant='permanent' />
-            <AppBar position='static' style={{ paddingLeft: marginLeft, opacity: 0.7, zIndex: -1 }}>
-              <Toolbar style={{ justifyContent: 'center' }}>
-                <Typography variant='h6'>{title}</Typography>
-              </Toolbar>
-            </AppBar>
+            <Topbar title={title} paddingLeft={marginLeft} />
             <div style={{ marginLeft, padding, minHeight: '90vh' }}>
               {children}
             </div>
           </Hidden>
           <Hidden only={['md', 'lg', 'xl']} implementation='js'>
             <Sidebar activePage={activePage} variant='temporary' open={sidebarOpen} toggleSidebar={sidebarOpen => this.setState({ sidebarOpen })} />
-            <AppBar position='static' style={{ opacity: 0.7, zIndex: -1 }}>
-              <Toolbar style={{ minHeight: 64 }}>
-                <Button onClick={() => this.setState({ sidebarOpen: true })}><Icon>menu</Icon></Button>
-                <Typography variant='h6' style={{ position: 'absolute', left: 0, right: 0, textAlign: 'center', zIndex: -1 }}>{title}</Typography>
-              </Toolbar>
-            </AppBar>
+            <Topbar title={title} toggleSideBar={this.toggleSideBar} />
             <div style={{ padding, minHeight: '90vh' }}>
               {children}
             </div>

@@ -14,6 +14,7 @@ import { purple } from '@material-ui/core/colors'
 import {
   Image
 } from './'
+
 const items = [
   { label: 'Home', page: '/', icon: 'home' },
   { label: 'Resume', page: '/resume/', icon: 'local_library' },
@@ -48,29 +49,31 @@ const renderItem = ({ label, page, icon, activePage }) => (
   </StyledListItem>
 )
 
-const StyledSwipeableDrawer = withStyles({
-  paper: {
-    width: 250,
-    border: 'none',
-    textAlign: 'center',
-    opacity: 0.8,
-    marginTop: 64
-  }
-})(SwipeableDrawer)
+const Sidebar = ({ activePage, variant, open, toggleSidebar }) => {
+  const StyledSwipeableDrawer = withStyles({
+    paper: {
+      width: 250,
+      border: 'none',
+      textAlign: 'center',
+      opacity: open ? 1 : 0.7,
+      marginTop: 64
+    }
+  })(SwipeableDrawer)
 
-const Sidebar = ({ activePage, variant, open, toggleSidebar }) => (
-  <StyledSwipeableDrawer
-    open={open}
-    variant={variant}
-    onOpen={() => toggleSidebar(true)}
-    onClose={() => toggleSidebar(false)}
-  >
-    <Image src='logo.png' width={'150px'} />
-    <List style={{ paddingTop: 0 }}>
-      {items.map((item) => renderItem({ ...item, activePage }))}
-    </List>
-  </StyledSwipeableDrawer>
-)
+  return (
+    <StyledSwipeableDrawer
+      open={open}
+      variant={variant}
+      onOpen={() => toggleSidebar(true)}
+      onClose={() => toggleSidebar(false)}
+    >
+      <Image src='logo.png' width={'150px'} />
+      <List style={{ paddingTop: 0 }}>
+        {items.map((item) => renderItem({ ...item, activePage }))}
+      </List>
+    </StyledSwipeableDrawer>
+  )
+}
 
 Sidebar.defaultProps = {
   activePage: '/',

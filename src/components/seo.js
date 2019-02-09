@@ -26,7 +26,7 @@ const SEO = ({ description, lang, meta, keywords, title }) => {
             htmlAttributes={{
               lang
             }}
-            title={title}
+            title={title || 'Jana Rajakumar'}
             titleTemplate={`%s | ${data.site.siteMetadata.title}`}
             meta={[
               {
