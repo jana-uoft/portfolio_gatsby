@@ -32,7 +32,7 @@ module.exports = {
       options: {
         projectId: 'bp5s8545',
         dataset: 'projects',
-        token: process.env.SANITY_TOKEN,
+        token: process.env.GATSBY_SANITY_TOKEN,
         watchMode: true
       }
     }
