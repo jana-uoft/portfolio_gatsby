@@ -10,17 +10,13 @@ export default {
       validation: Rule => Rule.required()
     },
     {
-      title: 'URL',
-      name: 'url',
-      type: 'url'
-    },
-    {
       title: 'Logo',
       name: 'logo',
       type: 'image',
       options: {
         hotspot: true
-      }
+      },
+      validation: Rule => Rule.required()
     }
   ]
 }

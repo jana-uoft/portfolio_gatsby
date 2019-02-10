@@ -13,7 +13,7 @@ function renderImage (images, src, width) {
   }
 }
 
-const MyImg = ({ src, width }) => {
+const Image = ({ src, width }) => {
   return <StaticQuery
     query={graphql`
       query {
@@ -36,14 +36,14 @@ const MyImg = ({ src, width }) => {
   />
 }
 
-MyImg.defaultProps = {
+Image.defaultProps = {
   src: `unknown.jpg`,
   width: '100%'
 }
 
-MyImg.propTypes = {
+Image.propTypes = {
   src: PropTypes.string.isRequired,
   width: PropTypes.string
 }
 
-export default MyImg
+export default Image

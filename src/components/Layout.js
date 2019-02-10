@@ -1,16 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
-import {
-  CssBaseline,
-  Hidden
-} from '@material-ui/core'
+import { CssBaseline } from '@material-ui/core'
 import { purple, red } from '@material-ui/core/colors'
 import {
   SEO,
   Sidebar,
-  Topbar
-} from './'
+  Topbar,
+  Desktop,
+  Mobile
+} from '.'
 import bg from '../images/bg.jpg'
 import LogRocket from 'logrocket'
 
@@ -38,7 +37,7 @@ class Layout extends React.Component {
   toggleSideBar = () => this.setState({ sidebarOpen: true })
 
   render () {
-    const { title, activePage, children, marginLeft, padding } = this.props
+    const { title, activePage, children, marginLeft } = this.props
     const { sidebarOpen } = this.state
 
     return (
@@ -47,21 +46,21 @@ class Layout extends React.Component {
         <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:300,400,500' />
         <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons' />
         <SEO title={title} keywords={[`jana`, `jana rajakumar`, `freelancer`, `jana19.org`]} />
-        <div style={{ backgroundPosition: 'center', backgroundSize: 'contain', background: `url('${bg}')`, minHeight: '100vh', minWidth: 400 }}>
-          <Hidden only={['xs', 'sm']} implementation='js'>
+        <div style={{ backgroundPosition: 'center', backgroundSize: 'cover', background: `url('${bg}')`, minHeight: '100vh', minWidth: 400 }}>
+          <Desktop>
             <Sidebar activePage={activePage} variant='permanent' />
             <Topbar title={title} paddingLeft={marginLeft} />
-            <div style={{ marginLeft, padding, minHeight: '90vh' }}>
+            <div style={{ marginLeft, minHeight: '90vh', padding: '64px 0 10px 0' }}>
               {children}
             </div>
-          </Hidden>
-          <Hidden only={['md', 'lg', 'xl']} implementation='js'>
+          </Desktop>
+          <Mobile>
             <Sidebar activePage={activePage} variant='temporary' open={sidebarOpen} toggleSidebar={sidebarOpen => this.setState({ sidebarOpen })} />
             <Topbar title={title} toggleSideBar={this.toggleSideBar} />
-            <div style={{ padding, minHeight: '90vh' }}>
+            <div style={{ minHeight: '90vh', padding: '64px 0 10px 0' }}>
               {children}
             </div>
-          </Hidden>
+          </Mobile>
         </div>
       </MuiThemeProvider>
     )
@@ -71,17 +70,14 @@ class Layout extends React.Component {
 Layout.defaultProps = {
   title: 'Home',
   activePage: '/',
-  marginLeft: 250,
-  padding: 10,
-  children: <></>
+  marginLeft: 250
 }
 
 Layout.propTypes = {
   title: PropTypes.string.isRequired,
   activePage: PropTypes.string.isRequired,
   marginLeft: PropTypes.number,
-  padding: PropTypes.number,
-  children: PropTypes.node
+  children: PropTypes.node.isRequired
 }
 
 export default Layout

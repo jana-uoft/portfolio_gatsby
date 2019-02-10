@@ -13,7 +13,7 @@ import {
 import { purple } from '@material-ui/core/colors'
 import {
   Image
-} from './'
+} from '.'
 
 const items = [
   { label: 'Home', page: '/', icon: 'home' },
@@ -49,14 +49,15 @@ const renderItem = ({ label, page, icon, activePage }) => (
   </StyledListItem>
 )
 
-const Sidebar = ({ activePage, variant, open, toggleSidebar }) => {
+const Sidebar = ({ activePage, variant, open, toggleSidebar, data }) => {
   const StyledSwipeableDrawer = withStyles({
     paper: {
       width: 250,
       border: 'none',
       textAlign: 'center',
       opacity: open ? 1 : 0.7,
-      marginTop: 64
+      marginTop: 64,
+      zIndex: 'auto'
     }
   })(SwipeableDrawer)
 

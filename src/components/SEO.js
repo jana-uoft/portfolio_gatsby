@@ -15,7 +15,7 @@ const detailsQuery = graphql`
   }
 `
 
-const SEO = ({ description, lang, meta, keywords, title }) => {
+const SEO = ({ description, lang, meta, keywords, title = 'Jana Rajakumar' }) => {
   return (
     <StaticQuery
       query={detailsQuery}
@@ -26,7 +26,7 @@ const SEO = ({ description, lang, meta, keywords, title }) => {
             htmlAttributes={{
               lang
             }}
-            title={title || 'Jana Rajakumar'}
+            title={title}
             titleTemplate={`%s | ${data.site.siteMetadata.title}`}
             meta={[
               {

@@ -13,8 +13,8 @@ const Topbar = ({ paddingLeft, toggleSideBar, title }) => {
   const TopBar = withStyles({
     positionStatic: {
       paddingLeft,
-      zIndex: -1,
-      opacity: 0.7
+      opacity: 1,
+      position: 'fixed'
     }
   })(AppBar)
 
