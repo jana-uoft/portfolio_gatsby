@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import {
   Card,
@@ -17,7 +18,7 @@ import {
 import { purple } from '@material-ui/core/colors'
 import { ImageGallery } from './'
 
-export default class Project extends Component {
+class Project extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -127,3 +128,11 @@ export default class Project extends Component {
     )
   }
 }
+
+Project.propTypes = {
+  project: PropTypes.object.isRequired,
+  handleTagClick: PropTypes.func.isRequired,
+  activeTags: PropTypes.object.isRequired
+}
+
+export default Project

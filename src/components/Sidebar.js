@@ -49,7 +49,7 @@ const renderItem = ({ label, page, icon, activePage }) => (
   </StyledListItem>
 )
 
-const Sidebar = ({ activePage, variant, open, toggleSidebar, data }) => {
+const Sidebar = ({ activePage, variant, open, toggleSidebar }) => {
   const StyledSwipeableDrawer = withStyles({
     paper: {
       width: 250,

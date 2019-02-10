@@ -8,11 +8,8 @@ import {
   Avatar
 } from '@material-ui/core'
 
-const TagsWrapper = withStyles(theme => ({
+const TagsWrapper = withStyles({
   root: {
-    [theme.breakpoints.up('sm')]: {
-      backgroundColor: 'transparent !important'
-    },
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fit, 150px)',
     gridGap: '10px !important',
@@ -25,7 +22,7 @@ const TagsWrapper = withStyles(theme => ({
     top: 64,
     zIndex: 1
   }
-}))(Paper)
+})(Paper)
 
 export default class Projects extends Component {
   constructor (props) {
@@ -51,6 +48,7 @@ export default class Projects extends Component {
         clickable
         onClick={() => this.handleTagClick(_id)}
         color={activeTags.has(_id) ? 'primary' : 'default'}
+        style={{ backfaceColor: activeTags.has(_id) ? 'dimgrey' : 'transparent' }}
       />
     )
   }
@@ -120,7 +118,12 @@ export const query = graphql`
         }
       }
     }
-    allSanityTag {
+    allSanityTag (
+      sort: {
+          fields: [name]
+          order: ASC
+        }
+    ) {
       edges {
         node {
           _id,
