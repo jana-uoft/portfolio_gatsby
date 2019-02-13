@@ -17,7 +17,7 @@ const InstagramPost = ({ photo }) => {
           alt={photo.caption}
           image={photo.url}
           title={photo.caption}
-          style={{ padding: 5 }}
+          style={{ padding: 5, minHeight: 350 }}
         />
       </CardActionArea>
     </Card>

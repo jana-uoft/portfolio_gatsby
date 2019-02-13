@@ -59,11 +59,11 @@ export default class Social extends Component {
     return (
       <Layout title='Social' activePage='/social/' >
         <SocialIconsWrapper>
-          <SocialIcon url='https://www.instagram.com/jana_._._._/' />
-          <SocialIcon url='https://twitter.com/janastc19' />
-          <SocialIcon url='https://github.com/jana-uoft' />
-          <SocialIcon url='https://www.facebook.com/Jana.JR.19' />
-          <SocialIcon url='https://www.linkedin.com/in/jana19/' />
+          <SocialIcon url='https://www.instagram.com/jana_._._._/' target='_blank' />
+          <SocialIcon url='https://twitter.com/janastc19' target='_blank' />
+          <SocialIcon url='https://github.com/jana-uoft' target='_blank' />
+          <SocialIcon url='https://www.facebook.com/Jana.JR.19' target='_blank' />
+          <SocialIcon url='https://www.linkedin.com/in/jana19/' target='_blank' />
         </SocialIconsWrapper>
         <div style={{
           display: 'grid',
